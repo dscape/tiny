@@ -1,1 +1,1 @@
-web: node short.js
+web: node index.js
