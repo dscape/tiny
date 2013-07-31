@@ -2,16 +2,7 @@ var http    = require('http')
   , url     = require('url')
   , levelup = require('levelup')
   , db      = levelup('./tiny')
-  , DOMAIN  = process.env.DOMAIN
   ;
-
-if(!DOMAIN) {
-  throw new Error('This program requires a DOMAIN env var to be set');
-}
-
-if(!/https?/.exec(DOMAIN)) {
-  throw new Error('DOMAIN does not start with http://');
-}
 
 //
 // simple generation of short urls with auto retry
@@ -117,7 +108,7 @@ http.createServer(function (req, res) {
             //
             // send the stuff man
             //
-            res.end(url.resolve(DOMAIN, uuid));
+            res.end(value);
           });
         });
         return;
@@ -126,7 +117,7 @@ http.createServer(function (req, res) {
       //
       // found in the database, just return it
       //
-      res.end(url.resolve(DOMAIN, value));
+      res.end(value);
     });
   } else {
     //
@@ -150,7 +141,7 @@ http.createServer(function (req, res) {
       //
       // redirect the user
       //
-      res.writeHead(302, {'Location': url.resolve(DOMAIN, value)});
+      res.writeHead(302, {'Location': value});
       res.end();
     });
   }
