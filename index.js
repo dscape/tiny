@@ -52,6 +52,7 @@ function generate_short(cb, retries) {
 }
 
 http.createServer(function (req, res) {
+  console.log(req.url);
   //
   // create a new url
   //
