@@ -4,6 +4,9 @@ var http    = require('http')
   , db      = levelup('./tiny')
   ;
 
+
+// Tive de alterar para ele deixar fazer o push
+
 //
 // simple generation of short urls with auto retry
 //
